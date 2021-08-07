@@ -17,10 +17,13 @@ export default function App () {
   const [largeImage, setLargeImage] = useState('');
 
   useEffect(() => {
-    window.addEventListener('keydown', handleKeyDown);
-    window.addEventListener('click', handleMouseClick);
+      window.addEventListener('keydown', handleKeyDown);
+      window.addEventListener('click', handleMouseClick);
+    return () => { 
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('click', handleMouseClick);
+  }
   }, [showModal]);
-
 
   const handleKeyDown = (e) => {
     if (e.code === 'Escape' && showModal) {
